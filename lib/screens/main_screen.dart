@@ -27,7 +27,7 @@ class _MainScreenState extends State<MainScreen> {
   late List<Widget> _screens;
 
   final List<String> _titles = [
-    'Cash Calculator',
+    'Money Calculator',
     'History',
     'Settings',
   ];
@@ -156,7 +156,7 @@ class _MainScreenState extends State<MainScreen> {
         child: Column(
           children: [
             Expanded(child: _screens[_currentIndex]),
-            const ad_widgets.BannerAdWidget(),
+            _currentIndex != 0?const ad_widgets.BannerAdWidget():SizedBox.shrink(),
           ],
         ),
       ),
@@ -228,7 +228,7 @@ class _MainScreenState extends State<MainScreen> {
     final isDark = theme.brightness == Brightness.dark;
 
     return Drawer(
-      backgroundColor: theme.colorScheme.surface,
+      backgroundColor: Colors.white,
       child: Column(
         children: [
           // Header
@@ -250,10 +250,8 @@ class _MainScreenState extends State<MainScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(isDark ? 0.1 : 0.2),
-                      ),
+                      width: MediaQuery.of(context).size.width,
+                      padding: const EdgeInsets.all(10),
                       child: Image.asset("assets/icon/app_icon.png",
                         width: 50,
                         height: 50,
@@ -261,7 +259,7 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                     const SizedBox(height: 16),
                     Text(
-                      'Cash Calculator',
+                      'Money Calculator',
                       style: TextStyle(
                         color: isDark ? theme.colorScheme.onSurface : Colors.white,
                         fontSize: 24,
